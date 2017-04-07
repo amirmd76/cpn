@@ -5,10 +5,6 @@ import json
 
 from . import consts
 
-__author__ = "Charzeh Group"
-
-__version__ = "1.0.0"
-
 
 class Client(object):
     authorized = False
