@@ -17,10 +17,11 @@ Or you can manually download the source code.
 ```python
 from cpn import Client as CPNClient
 
-client = CPNClient("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")	# App token
+client = CPNClient("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX") # App token
 
 new_device_token = client.obtain_token()
 
-send_notification(new_device_token, "this is just a test notification")
-send_json_notification(new_device_token, {"type": "warning", "message": "Let's do it", "name" = "Jon Doe"})
+client.send_notification(new_device_token, "this is just a test notification")
+
+client.send_json_notification(new_device_token, {"type": "warning", "message": "Let's do it", "name": "Jon Doe"})
 ```
