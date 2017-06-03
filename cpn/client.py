@@ -13,7 +13,7 @@ class Client(object):
     def _get_headers(self):
         if self.token is None:
             raise ValueError("Token should hold a value")
-        return {u"authorization": u"Token {}".format(self.token)}
+        return {u"Authorization": u"Token {}".format(self.token)}
 
     def _authorize(self):
         res = requests.get(consts.AUTHORIZATION_URL, headers=self._get_headers())
@@ -31,8 +31,8 @@ class Client(object):
     def send_notification(self, device_token, content):
         if not self.authorized:
             self._authorize()
-        res = requests.get(consts.SEND_URL, headers=self._get_headers(), json={"token": device_token,
-                                                                                        "content": content})
+        res = requests.post(consts.SEND_URL, headers=self._get_headers(), json={"token": device_token,
+                                                                                "content": content})
 
         if res.status_code != 200:
             raise Exception(res.text)
@@ -49,3 +49,4 @@ class Client(object):
             raise Exception(res.text)
         result = res.json()
         return result["result"]["token"]
+
